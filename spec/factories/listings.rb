@@ -4,7 +4,7 @@ FactoryGirl.define do
     title "Test Listing"
     description "Can go here shortly"
 
-    factory :event_two do
+    factory :listing_two do
       title "Test Listing 2"
     end
   end

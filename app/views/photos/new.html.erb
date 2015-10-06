@@ -1,0 +1,5 @@
+
+<%= form_for [@listing, @photo], html: {multipart: true, :id => "TBC"} do |f| %>
+  <%= f.file_field :image %>
+  <%= f.submit :value => "Add photo" %>
+<% end %>

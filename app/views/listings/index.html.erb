@@ -1,6 +1,7 @@
 <% if @listings.any? %>
   <% @listings.each do |listing| %>
     <%= link_to listing.name, listing_path(listing) %>
+    <%= link_to "Add Photos", new_listing_photo_path(listing) %>
   <% end %>
 <% else %>
   <p>No listings yet.<p>
@@ -15,3 +16,5 @@
     <%= link_to "Delete #{listing.name}", listing_path(listing), method: :delete %>
   <% end %>
 <% end %>
+
+
