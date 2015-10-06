@@ -15,7 +15,6 @@ end
 
 def sign_in(user)
 	visit '/' 
-	save_and_open_page
 	click_link "Sign in"
 	fill_in "user[email]", with: "test@test.com"
 	fill_in "user[password]", with: "password"

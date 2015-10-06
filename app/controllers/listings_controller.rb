@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
 		else
   		render 'new'
 		end
-  end
+	end
 
   def show
   	@listing = Listing.find(params[:id])
@@ -42,7 +42,9 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:name)
+    params.require(:listing).permit(:name, :city, :accomodates, 
+    																:description, :beds, :baths, 
+    																:price, :home_type, :address )
   end
 
 end

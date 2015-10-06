@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Listing, type: :model do
   it { should belong_to (:user) }
+  it { should have_many (:photos) }
 
   it 'is not valid with a name of less than three characters' do
   	listing = Listing.new(name: "..")
