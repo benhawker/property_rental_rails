@@ -11,9 +11,10 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-    @listing = Listing.new(listing_params)
-		if @listing.save
-  		redirect_to root_path
+    @user = current_user
+    @listing = @user.listings.build(listing_params)
+    if @listing.save
+      redirect_to root_path
 		else
   		render 'new'
 		end
@@ -43,7 +44,8 @@ class ListingsController < ApplicationController
   def listing_params
     params.require(:listing).permit(:name, :city, :accomodates, 
     																:description, :beds, :baths, 
-    																:price, :home_type, :address )
+    																:price, :home_type, :address,
+                                    :user_id)
   end
 
 end
