@@ -54,4 +54,15 @@ feature 'listings' do
   		expect(current_path).to eq '/'
   	end
   end
+
+  context 'deleting restaurants' do
+  	before { Listing.create name: "Test Listing" }
+
+  	scenario 'removes a listing when user clicks delete link' do
+  		visit '/'
+  		click_link 'Delete Test Listing'
+  		expect(page).to have_content 'Listing successfully deleted'
+  		expect(page).not_to have_content "Test Listing"
+  	end
+  end
 end

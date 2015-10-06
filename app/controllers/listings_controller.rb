@@ -28,6 +28,13 @@ class ListingsController < ApplicationController
     redirect_to '/'
   end
 
+  def destroy
+  	@listing = Listing.find(params[:id])
+  	@listing.destroy
+  	flash[:notice] = 'Listing successfully deleted'
+  	redirect_to '/'
+  end
+
   def listing_params
     params.require(:listing).permit(:name)
   end
