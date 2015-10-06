@@ -29,6 +29,17 @@ feature 'listings' do
   		expect(page).to have_content "Test Event"
   		expect(current_path).to eq '/'
   	end
+
+  	context 'an invalid listing' do
+	    it 'name/title must be at least 3 chars' do
+				visit '/'
+	  		click_link 'Add a listing'
+	  		fill_in "listing[name]", with: ".."
+	  		click_button "Create Listing"
+	      expect(page).not_to have_css 'h2', text: '..'
+	      expect(page).to have_content 'error'
+	    end
+	  end
   end
 
   context 'viewing listings' do

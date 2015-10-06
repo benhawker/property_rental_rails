@@ -1,5 +1,17 @@
-<%= form_for Listing.new do |f| %>
+<% if @listing.errors.any? %>
+  <section id="errors" >
+    <h2> <%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved: </h2>
+    <ul>
+      <% @listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<%= form_for @listing do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.submit "Create Listing" %>
 <% end %>
+

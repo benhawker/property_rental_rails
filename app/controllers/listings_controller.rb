@@ -5,12 +5,16 @@ class ListingsController < ApplicationController
 	end
 
 	def new
-
+		@listing = Listing.new
 	end
 
 	def create
-    Listing.create(listing_params)
-    redirect_to '/'
+    @listing = Listing.new(listing_params)
+		if @listing.save
+  		redirect_to root_path
+		else
+  		render 'new'
+		end
   end
 
   def show

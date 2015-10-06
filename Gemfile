@@ -18,6 +18,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda'
+  gem 'rspec-collection_matchers'
 end
 
 group :development do
