@@ -30,4 +30,28 @@ feature 'listings' do
   		expect(current_path).to eq '/'
   	end
   end
+
+  context 'viewing listings' do
+  	let!(:test_listing){ Listing.create(name:'Test Listing') }
+
+  	scenario 'lets a user view a listing' do
+  		visit '/'
+  		click_link 'Test Listing'
+  		expect(page).to have_content 'Test Listing'
+  		expect(current_path).to eq "/listings/#{test_listing.id}"
+  	end
+  end
+
+  context 'editing listings' do
+  	before { Listing.create name: "Test Listing" }
+
+  	scenario 'let a user edit a listing' do
+  		visit '/'
+  		click_link 'Edit Test Listing'
+  		fill_in "listing[name]", with: "Test Listing 2"
+  		click_button "Update listing"
+  		expect(page).to have_content "Test Listing 2"
+  		expect(current_path).to eq '/'
+  	end
+  end
 end

@@ -13,7 +13,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'byebug'
-  gem 'guard'
+  gem 'guard-rspec', require: false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'

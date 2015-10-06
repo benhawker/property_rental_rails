@@ -3,7 +3,8 @@
 
 <% if @listings.any? %>
   <% @listings.each do |listing| %>
-    <h2> <%= listing.name %> </h2>
+    <h2> <%= link_to listing.name, listing_path(listing) %> </h2>
+    <h2> <%= link_to "Edit #{listing.name}", edit_listing_path(listing) %> </h2>
   <% end %>
 <% else %>
   <p>No listings yet.<p>
