@@ -9,7 +9,7 @@
   </section>
 <% end %>
 
-<%= form_for @listing do |f| %>
+<%= form_for @listing, :html => {:multipart => true} do |f| %>
 	<%= f.text_field :name, placeholder: "Name", class: "form-control" %>
 	<%= f.text_field :city, placeholder: "City", class: "form-control" %>
 	<%= f.text_field :accomodates, placeholder: "Accomodates", class: "form-control" %>
@@ -23,5 +23,9 @@
 	<%= f.text_field :address, placeholder: "Address", class: "form-control" %>
   <%= f.submit "Create Listing", class: "form-control" %>
 <% end %>
+
+
+
+
 
 

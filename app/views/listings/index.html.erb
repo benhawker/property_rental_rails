@@ -1,11 +1,6 @@
-
-
-
 <% if @listings.any? %>
   <% @listings.each do |listing| %>
-    <h2> <%= link_to listing.name, listing_path(listing) %> </h2>
-    <%= link_to "Edit #{listing.name}", edit_listing_path(listing) %>
-    <%= link_to "Delete #{listing.name}", listing_path(listing), method: :delete %>
+    <%= link_to listing.name, listing_path(listing) %>
   <% end %>
 <% else %>
   <p>No listings yet.<p>
@@ -13,4 +8,10 @@
 
 <%= link_to "Add a listing", new_listing_path %>
 
-`
+
+<% if @listings.any? %>
+  <% @listings.each do |listing| %>
+ 		<%= link_to "Edit #{listing.name}", edit_listing_path(listing) %>
+    <%= link_to "Delete #{listing.name}", listing_path(listing), method: :delete %>
+  <% end %>
+<% end %>

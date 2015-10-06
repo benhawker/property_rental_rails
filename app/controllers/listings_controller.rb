@@ -30,15 +30,14 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     @listing.update(listing_params)
-
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def destroy
   	@listing = Listing.find(params[:id])
   	@listing.destroy
   	flash[:notice] = 'Listing successfully deleted'
-  	redirect_to '/'
+  	redirect_to root_path
   end
 
   def listing_params

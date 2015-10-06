@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006141545) do
+ActiveRecord::Schema.define(version: 20151006170314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,27 @@ ActiveRecord::Schema.define(version: 20151006141545) do
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "listing_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "photos", ["listing_id"], name: "index_photos_on_listing_id", using: :btree
+
+  create_table "ratings", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.text     "review"
+    t.text     "recommended"
+  end
+
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -61,4 +76,5 @@ ActiveRecord::Schema.define(version: 20151006141545) do
 
   add_foreign_key "listings", "users"
   add_foreign_key "photos", "listings"
+  add_foreign_key "ratings", "users"
 end
