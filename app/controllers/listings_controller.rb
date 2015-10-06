@@ -22,6 +22,7 @@ class ListingsController < ApplicationController
 
   def show
   	@listing = Listing.find(params[:id])
+    @photos = @listing.photos.all
   end
 
   def edit
