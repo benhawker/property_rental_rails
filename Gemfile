@@ -19,6 +19,7 @@ group :development, :test do
   gem 'launchy'
   gem 'shoulda'
   gem 'rspec-collection_matchers'
+  gem 'factory_girl_rails'
 end
 
 group :development do

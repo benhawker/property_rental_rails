@@ -1,5 +1,27 @@
 require 'rails_helper'
 
+def sign_up(user)
+	visit '/' 
+	click_link 'Sign up'
+	fill_in 'Email', with: 'test@example.com'
+	fill_in 'Password', with: 'testtest'
+	fill_in 'Password confirmation', with: 'testtest'
+	click_button 'Sign up'
+end
+
+def sign_out
+	click_link 'Sign out'
+end
+
+def sign_in(user)
+	visit '/' 
+	save_and_open_page
+	click_link "Sign in"
+	fill_in "user[email]", with: "test@test.com"
+	fill_in "user[password]", with: "password"
+	click_button 'Log in'
+end
+
 feature 'listings' do
   context 'no listings have been added' do
     scenario 'should display a prompt to add a listing' do
@@ -21,7 +43,11 @@ feature 'listings' do
   end
 
   context 'creating listings' do
+
+  	let!(:user){ User.create }
+
   	scenario 'prompts user to fill out form, the displays their new listing' do
+  		sign_up(user)
   		visit '/'
   		click_link 'Add a listing'
   		fill_in "listing[name]", with: "Test Event"
@@ -32,6 +58,7 @@ feature 'listings' do
 
   	context 'an invalid listing' do
 	    it 'name/title must be at least 3 chars' do
+	    	sign_up(user)
 				visit '/'
 	  		click_link 'Add a listing'
 	  		fill_in "listing[name]", with: ".."
@@ -55,8 +82,10 @@ feature 'listings' do
 
   context 'editing listings' do
   	before { Listing.create name: "Test Listing" }
+  	let!(:user){ User.create }
 
   	scenario 'let a user edit a listing' do
+  		sign_up(user)
   		visit '/'
   		click_link 'Edit Test Listing'
   		fill_in "listing[name]", with: "Test Listing 2"
@@ -68,8 +97,10 @@ feature 'listings' do
 
   context 'deleting restaurants' do
   	before { Listing.create name: "Test Listing" }
+  	let!(:user){ User.create }
 
   	scenario 'removes a listing when user clicks delete link' do
+  		sign_up(user)
   		visit '/'
   		click_link 'Delete Test Listing'
   		expect(page).to have_content 'Listing successfully deleted'
