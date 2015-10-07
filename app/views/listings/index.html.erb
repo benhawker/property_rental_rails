@@ -1,20 +1,21 @@
+<%= link_to "Add a listing", new_listing_path %>
+
+<br>
+
 <% if @listings.any? %>
+	<ul>
   <% @listings.each do |listing| %>
-    <%= link_to listing.name, listing_path(listing) %>
-    <%= link_to "Add Photos", new_listing_photo_path(listing) %>
+    <li><%= link_to listing.name, listing_path(listing) %> </li>
+    <li><%= link_to "Add Photos", new_listing_photo_path(listing) %> </li>
+    <li><%= link_to "Edit #{listing.name}", edit_listing_path(listing) %> </li>
+    <li><%= link_to "Delete #{listing.name}", listing_path(listing), method: :delete %> </li>
+    <br>
   <% end %>
+  </ul>
 <% else %>
   <p>No listings yet.<p>
 <% end %>
 
-<%= link_to "Add a listing", new_listing_path %>
 
-
-<% if @listings.any? %>
-  <% @listings.each do |listing| %>
- 		<%= link_to "Edit #{listing.name}", edit_listing_path(listing) %>
-    <%= link_to "Delete #{listing.name}", listing_path(listing), method: :delete %>
-  <% end %>
-<% end %>
 
 

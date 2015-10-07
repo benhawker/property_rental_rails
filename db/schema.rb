@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007071102) do
+ActiveRecord::Schema.define(version: 20151007090954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "listing_id"
+    t.integer  "user_id"
+  end
+
+  add_index "bookings", ["listing_id"], name: "index_bookings_on_listing_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.string   "name"
@@ -78,6 +88,8 @@ ActiveRecord::Schema.define(version: 20151007071102) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bookings", "listings"
+  add_foreign_key "bookings", "users"
   add_foreign_key "listings", "users"
   add_foreign_key "photos", "listings"
   add_foreign_key "ratings", "users"

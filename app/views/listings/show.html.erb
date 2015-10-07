@@ -1,7 +1,7 @@
 
 
 <p><%= @listing.name %></p>
-<%= @listing.user.email %>
+<!-- @listing.user.email -->
 <%= @listing.city %>
 <%= @listing.accomodates %>
 <%= @listing.description %>
@@ -14,6 +14,8 @@
 <% @photos.each do |photo| %>
   <%= photo %>
 <% end %>
+
+<%= link_to "Make a Booking", new_listing_booking_path(@listing)  %>
 
 
 
