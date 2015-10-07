@@ -1,6 +1,7 @@
 
 
 <p><%= @listing.name %></p>
+<%= @listing.user.email %>
 <%= @listing.city %>
 <%= @listing.accomodates %>
 <%= @listing.description %>
@@ -9,7 +10,6 @@
 <%= @listing.price %>
 <%= @listing.home_type %>
 <%= @listing.address %>
-
 
 <% @photos.each do |photo| %>
   <%= photo %>
